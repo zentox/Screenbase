@@ -27,24 +27,23 @@ $link = dbConnect();
 
 			if ($existing == null)
 			{
-
-				if (updateScreen($_POST['id'], $_POST['url'], $_POST['tag01'], $_POST['tag02'], $_POST['tag03'], $_POST['tag04'], $_POST['tag05'], $_POST['tag06'], $_POST['tag07'], $_POST['tag08']))
+				if (updateScreen($_POST['id'], $_POST['url'], $_POST['tag01'], $_POST['tag02'], $_POST['tag03'], $_POST['tag04'], $_POST['tag05'], $_POST['tag06'], $_POST['tag07'], $_POST['tag08'], $_POST['tag09'], $_POST['tag10']))
 				{
 					echo "<p>Modifications enregistrées.</p>";
-					echo "<a href='http://screenbase.byethost16.com/admin/admin.php'>Suivant</a>";
+					echo "<a href='admin.php'>Suivant</a>";
 				}
 	
 				else
 				{
 					echo "<p>L'update a échouée.</p>";
-					echo "<a href='http://screenbase.byethost16.com/admin/admin.php'>Suivant</a>";
+					echo "<a href='admin.php'>Suivant</a>";
 				}
 			}
 
 			else
 			{
 				echo "<p>Cette image existe déjà.</p>";
-				echo "<a href='http://screenbase.byethost16.com/admin/admin.php'>Suivant</a>";
+				echo "<a href='admin.php'>Suivant</a>";
 			}
 
 		}
@@ -52,7 +51,7 @@ $link = dbConnect();
 		else
 		{
 			echo "<p>L'URL ne pointe pas sur une image.</p>";
-			echo "<a href='http://screenbase.byethost16.com/admin/admin.php'>Suivant</a>";
+			echo "<a href='admin.php'>Suivant</a>";
 		}
 
 

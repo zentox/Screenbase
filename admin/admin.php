@@ -27,7 +27,6 @@ $link = dbConnect();
 			header ("Location: http://screenbase.byethost16.com/admin/admin.php");
 		}
 
-
 		$screens = getAllScreens();
 
 		if ($screens != null)
@@ -36,11 +35,32 @@ $link = dbConnect();
 
 			foreach ($screens as $screen)
 			{
-				$showTags = "<br><p> Tags : ";
+				echo "<br>";
 
-				for ($i=0; $i<8; $i++)
+				if ($screen['insertDate'] != null)
 				{
-					$index = "tag0";
+					$date = date_format(date_create($screen['insertDate']),'d/m/Y H:i:s');
+					echo "<p>".$date."</p>";
+				}
+
+				if ($screen['ip'] != null)
+				{
+					echo "<p>IP : ".$screen['ip']."</p>";
+				}
+
+				$showTags = "<p> Tags : ";
+
+				for ($i=0; $i<10; $i++)
+				{
+					if ($i+1 != 10)
+					{
+						$index = "tag0";
+					}
+					else
+					{
+						$index = "tag";
+					}
+
 					$index .= $i+1;
 
 					if ($screen[$index] != null)
@@ -58,13 +78,11 @@ $link = dbConnect();
 
 				echo $showTags;
 
-				echo "<p>IP : ".$screen['ip']."</p>";
-
 				echo "<a href='".$screen['url']."' target='_blank'><img src='".$screen['url']."' alt='".$screen['url']."' style='max-width:40%;' border='0'></a><br><br>";
 				
 				?>
 
-				<form method='POST' action='http://screenbase.byethost16.com/admin/updateScreen.php'>
+				<form method='POST' action='updateScreen.php'>
 					<input type='hidden' name='idScreen' value='<?php echo $screen["id"]; ?>'>
 					<input type='submit' value='Modifier' name='updateScreen'>
 				</form>

@@ -14,6 +14,7 @@ function dbConnect() {
 			return false;
 		}
 	}
+	mysqli_query($link, "SET NAMES UTF8");
 	return $link;
 }
 

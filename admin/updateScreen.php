@@ -34,7 +34,7 @@ $link = dbConnect();
 					<td><input type='text' name='url' size='60' autocomplete='off' required='required' style='margin-bottom:10px;' value='<?php echo $screen["url"]; ?>'></td>
 				</tr>
 				<tr>
-					<td>Tag 1&nbsp;</td>
+					<td>Tag 1</td>
 					<td><input type='text' name='tag01' size='30' autocomplete='off' required='required' value='<?php echo $screen["tag01"]; ?>'></td>
 				</tr>
 				<tr>
@@ -64,6 +64,14 @@ $link = dbConnect();
 				<tr>
 					<td>Tag 8</td>
 					<td><input type='text' name='tag08' size='30' autocomplete='off' value='<?php echo $screen["tag08"]; ?>'></td>
+				</tr>
+				<tr>
+					<td>Tag 9</td>
+					<td><input type='text' name='tag09' size='30' autocomplete='off' value='<?php echo $screen["tag09"]; ?>'></td>
+				</tr>
+				<tr>
+					<td>Tag 10</td>
+					<td><input type='text' name='tag10' size='30' autocomplete='off' value='<?php echo $screen["tag10"]; ?>'></td>
 				</tr>
 			</table>
 		

@@ -1,9 +1,10 @@
 <?php
 
-function addScreen($url, $ip, $nav, $tag01, $tag02, $tag03, $tag04, $tag05, $tag06, $tag07, $tag08)
+function addScreen($url, $insertDate, $ip, $nav, $tag01, $tag02, $tag03, $tag04, $tag05, $tag06, $tag07, $tag08, $tag09, $tag10)
 {
 	$data = array(
 		'url'			=> $url,
+		'insertDate'	=> $insertDate,
 		'ip'			=> $ip,
 		'nav'			=> $nav,
 		'tag01'			=> $tag01,
@@ -13,7 +14,9 @@ function addScreen($url, $ip, $nav, $tag01, $tag02, $tag03, $tag04, $tag05, $tag
 		'tag05'			=> $tag05,
 		'tag06'			=> $tag06,
 		'tag07'			=> $tag07,
-		'tag08'			=> $tag08);
+		'tag08'			=> $tag08,
+		'tag09'			=> $tag09,
+		'tag10'			=> $tag10);
 
 	return dbInsert('screens', $data);
 }
@@ -31,14 +34,17 @@ function getScreensFromTag($tag)
 	return dbSelect(
 		"SELECT *
 		from screens
-		where tag01 like '$tag'
-		or tag02 like '$tag'
-		or tag03 like '$tag'
-		or tag04 like '$tag'
-		or tag05 like '$tag'
-		or tag06 like '$tag'
-		or tag07 like '$tag'
-		or tag08 like '$tag'");
+		where tag01 like '%$tag%'
+		or tag02 like '%$tag%'
+		or tag03 like '%$tag%'
+		or tag04 like '%$tag%'
+		or tag05 like '%$tag%'
+		or tag06 like '%$tag%'
+		or tag07 like '%$tag%'
+		or tag08 like '%$tag%'
+		or tag09 like '%$tag%'
+		or tag10 like '%$tag%'
+		order by id desc");
 }
 
 function getScreensFromUrl($url)
@@ -66,12 +72,21 @@ function getScreensFromId($id)
 		where id like '$id'");
 }
 
+function getLastScreen()
+{
+	return dbSelect(
+		"SELECT *
+		from screens
+		where insertDate like (SELECT max(insertDate)
+			from screens)");
+}
+
 function deleteScreen($id)
 {
 	return dbDelete('screens', "id = $id");
 }
 
-function updateScreen($id, $url, $tag01, $tag02, $tag03, $tag04, $tag05, $tag06, $tag07, $tag08)
+function updateScreen($id, $url, $tag01, $tag02, $tag03, $tag04, $tag05, $tag06, $tag07, $tag08, $tag09, $tag10)
 {
 	$data = array(
 		'url'			=> $url,
@@ -82,7 +97,9 @@ function updateScreen($id, $url, $tag01, $tag02, $tag03, $tag04, $tag05, $tag06,
 		'tag05'			=> $tag05,
 		'tag06'			=> $tag06,
 		'tag07'			=> $tag07,
-		'tag08'			=> $tag08);
+		'tag08'			=> $tag08,
+		'tag09'			=> $tag09,
+		'tag10'			=> $tag10);
 
 	return dbUpdate('screens', $data, "id = $id");
 }
